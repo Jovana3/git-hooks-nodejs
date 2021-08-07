@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "lint": "eslint src/**",
-    "lint-fix": "eslint src/** --fix", 
+    "lint-fix": "eslint src/** --fix",
     "success-message": "echo Thanks for commiting $GIT_AUTHOR_NAME"
   },
   "repository": {
@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/Jovana3/git-hooks-nodejs#readme",
   "devDependencies": {
+    "@commitlint/cli": "^13.1.0",
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.23.4",
@@ -30,8 +31,19 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged", 
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
       "post-commit": "npm run success-message"
+    }
+  },
+  "commitlint": {
+    "rules": {
+     "references-empty": [2, "never"]
+    },
+    "parserPreset": {
+      "parserOpts": {
+        "issuePrefixes": ["ISSUE-"]
+      }
     }
   },
   "lint-staged": {
