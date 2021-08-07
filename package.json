@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint src/**",
+    "lint-fix": "eslint src/** --fix"
   },
   "repository": {
     "type": "git",
@@ -18,14 +20,16 @@
   },
   "homepage": "https://github.com/Jovana3/git-hooks-nodejs#readme",
   "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.23.4",
     "husky": "^4.3.8",
     "jest": "^27.0.6"
   },
   "husky": {
-    "hooks" : {
-      "pre-commit": "npm test"
+    "hooks": {
+      "pre-commit": "npm test && npm run lint"
     }
-
-  }
-  
+  },
+  "dependencies": {}
 }
